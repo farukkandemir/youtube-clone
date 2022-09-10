@@ -7,7 +7,7 @@ import ChannelCard from "./ChannelCard";
 
 import banner from "../utils/banner.jpg";
 import Videos from "./Videos";
-import { Stack } from "@mui/system";
+import { Stack } from "@mui/material";
 
 export default function ChannelDetails() {
   const [channelDetail, setChannelDetail] = useState(null);
