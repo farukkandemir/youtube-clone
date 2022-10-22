@@ -1,28 +1,28 @@
-import { Box } from "@mui/material";
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import {Box} from "@mui/material";
+import React, {useEffect} from "react";
+import {useState} from "react";
+import {useParams} from "react-router-dom";
 import fetchFromAPI from "../utils/fetchFromAPI";
 import ChannelCard from "./ChannelCard";
 
 import banner from "../utils/banner.jpg";
 import Videos from "./Videos";
-import { Stack } from "@mui/material";
+import {Stack} from "@mui/material";
 
 export default function ChannelDetails() {
   const [channelDetail, setChannelDetail] = useState(null);
   const [videos, setVideos] = useState([]);
 
-  const { id } = useParams();
+  const {id} = useParams();
 
   useEffect(() => {
-    fetchFromAPI(`channels?part=snippet&id=${id}`).then((data) =>
-      setChannelDetail(data?.items[0])
-    );
+    fetchFromAPI(`channels?part=snippet&id=${id}`)
+      .then((data) => setChannelDetail(data?.items[0]))
+      .catch((err) => console.log(err));
 
-    fetchFromAPI(`search?part=snippet&channelId=${id}&order=date`).then(
-      (data) => setVideos(data?.items)
-    );
+    fetchFromAPI(`search?part=snippet&channelId=${id}&order=date`)
+      .then((data) => setVideos(data?.items))
+      .catch((err) => console.log(err));
   }, [id]);
 
   // const {
